@@ -17,7 +17,7 @@ class TechnologyFactory extends Factory
     public function definition()
     {
         return [
-            'technology-name' => fake() -> word(),
+            'technology_name' => fake() -> word(),
         ];
     }
 }
