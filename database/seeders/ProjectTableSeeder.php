@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Project;
 use App\Models\Type;
 
+
 class ProjectTableSeeder extends Seeder
 {
     /**
