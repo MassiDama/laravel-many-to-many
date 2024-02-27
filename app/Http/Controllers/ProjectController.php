@@ -17,6 +17,13 @@ class ProjectController extends Controller
         return view('pages.projects.index', compact('projects'));
     }
 
+    public function show($id) {
+
+        $project = Project :: find($id);
+
+        return view('pages.projects.show', compact('project'));
+    }
+
     public function create() {
 
         $types = Type :: all();
@@ -29,6 +36,9 @@ class ProjectController extends Controller
 
         $data = $request -> all();
 
+        $img = $data['image'];
+        $img_path = Storage :: disk('public') -> put('images', $img);
+        
         $type = Type :: find($data['type_id']);
 
         $project = new Project();
@@ -36,6 +46,7 @@ class ProjectController extends Controller
         $project -> title = $data['title'];
         $project -> description = $data['description'];
         $project -> author = $data['author'];
+        $project -> image = $img_path;
 
         $project -> type() -> associate($type);
 
@@ -60,6 +71,9 @@ class ProjectController extends Controller
 
         $data = $request -> all();
 
+        $img = $data['image'];
+        $img_path = Storage :: disk('public') -> put('images', $img);
+
         $type = Type :: find($data['type_id']);
 
         $project = Project :: find($id);
@@ -67,6 +81,7 @@ class ProjectController extends Controller
         $project -> title = $data['title'];
         $project -> description = $data['description'];
         $project -> author = $data['author'];
+        $project -> image = $img_path;
 
         $project -> type() -> associate($type);
 

@@ -19,7 +19,8 @@ class ProjectFactory extends Factory
         return [
             'title' => fake() -> words(3, true),
             'description' => fake() -> sentence(),
-            'author'=>fake()->name()
+            'author'=>fake()->name(),
+            'image' => null,
         ];
     }
 }

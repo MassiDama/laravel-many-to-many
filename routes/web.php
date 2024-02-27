@@ -15,3 +15,5 @@ Route::post('/projects/create', [ProjectController :: class, 'store'])-> name('p
 
 Route::get('/projects/{id}/edit', [ProjectController :: class, 'edit']) -> name('project.edit');
 Route::put('/projects/{id}/edit', [ProjectController :: class, 'update']) -> name('project.update');
+
+Route::get('/projects/{id}', [ProjectController :: class, 'show']) -> name('project.show');

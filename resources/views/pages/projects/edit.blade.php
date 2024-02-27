@@ -5,7 +5,7 @@
 @section('content')
 
     <h1>EDIT:</h1>
-    <form action="{{ route('project.update', $project -> id) }}" method="POST">
+    <form action="{{ route('project.update', $project -> id) }}" method="POST" enctype="multipart/form-data">
        
     @csrf
     @method('PUT')
@@ -53,6 +53,10 @@
         @endforeach
         <br><br>
 
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image" accept="image/">
+        <br><br>
+        
         <input type="submit" value="EDIT">
     </form>
     

@@ -13,11 +13,13 @@
     <ul>
         @foreach ($projects as $project)
             <li>
-                <h5>Nome Progetto: {{$project -> title}} </h5>
-                    <div>Descrizione: {{$project -> description}} </div>
-                    <div>Autore: {{$project -> author}} </div>
-                    <div>Tipo Progetto: {{$project -> type -> name}}</div>
-                    <a href="{{route('project.edit', $project->id)}}">EDIT</a>
+                <a href="{{ route('project.show', $project -> id) }}">
+                    <h5>Nome Progetto: {{$project -> title}} </h5>
+                </a> 
+                <div>Descrizione: {{$project -> description}} </div>
+                <div>Autore: {{$project -> author}} </div>
+                <div>Tipo Progetto: {{$project -> type -> name}}</div>
+                <a href="{{route('project.edit', $project->id)}}">EDIT</a>
                     
                     <ul>
                         @foreach($project -> technologies as $technology)
