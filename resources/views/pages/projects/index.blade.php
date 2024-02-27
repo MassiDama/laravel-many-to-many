@@ -17,6 +17,7 @@
                     <div>Descrizione: {{$project -> description}} </div>
                     <div>Autore: {{$project -> author}} </div>
                     <div>Tipo Progetto: {{$project -> type -> name}}</div>
+                    <a href="{{route('project.edit', $project->id)}}">EDIT</a>
                     
                     <ul>
                         @foreach($project -> technologies as $technology)

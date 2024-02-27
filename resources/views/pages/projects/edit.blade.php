@@ -1,56 +1,59 @@
 @extends('layouts.main-layout')
 @section('head')
-    <title>Home</title>
+    <title>Edit</title>
 @endsection
 @section('content')
-    <h1>MODIFICA PROGETTO</h1>
-    <form action="{{ route('project.update', $project -> id) }}"
-    method="POST">
 
-    @csrf 
+    <h1>EDIT:</h1>
+    <form action="{{ route('project.update', $project -> id) }}" method="POST">
+       
+    @csrf
     @method('PUT')
 
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" value="{{ $project -> title }}">
-        <br>
-        <label for="description">Descrizione</label>
-        <input type="text" name="description" id="description" value="{{ $project -> description }}">
-        <br>
-        <label for="type_id">Seleziona il tipo:</label>
+        <label for="title"> Title </label>
+        <input type="text" name="title" value="{{ $project -> title }}">
+        <br><br>
+        <label for="description"> Description </label>
+        <input type="text" name="description" value="{{ $project -> description }}">
+        <br><br>
+        <label for="author"> Author </label>
+        <input type="text" name="author" value="{{ $project -> author }}">
+        <br><br>
+
+        <label for="type"> Type </label>
         <select name="type_id" id="type_id">
-            @foreach ($types as $type)
-            <option value="{{ $type -> id }}"                
-                @if ($project -> type -> id == $type -> id)
-                selected
-                @endif
-            >
-                {{ $type -> type_name}}
-            </option>
+            @foreach ( $types as $type )
+                <option value="{{ $type -> id }}"
+                    @if ( $project -> type -> id == $type -> id )
+                       selected
+                    @endif>
+                    {{ $type -> name }}
+                </option>
             @endforeach
         </select>
+        <br><br>
 
+        <label name="technology"> Technology: </label>
+        <br>
+        @foreach ($technologies as $technology)
+            <input  type="checkbox" 
+                    name="technology_id[]" id="{{ 'technology_id' . $technology -> id}}" 
+                    value="{{ $technology -> id}}"
 
-        <h5>Technology:</h5>
+                   @foreach ($project -> technologies as $project_technology)
+                       @if ($project_technology -> id == $technology -> id)
+                         checked  
+                       @endif
+                   @endforeach>
 
-        <div class="check-container">
-            @foreach($technologies as $technology)
-                <input  type="checkbox"
-                        name="technology_id[]"
-                        id="{{ 'technology_id_' . $technology -> id }}"
-                        value="{{ $technology -> id }}"
-                        class="d-inline"
+            <label for="{{ 'techonology_id' . $technology -> id}}">
+                {{ $technology -> technology_name }}
+            </label>
+            <br>
+        @endforeach
+        <br><br>
 
-                @foreach ($project -> technologies as $project_technology )
-                    @if ( $project_technology -> id == $technology -> id )
-                        checked
-                    @endif
-                @endforeach>
-
-                <label for="{{ 'technology_id_' . $technology -> id }}">
-                    {{ $technology -> technology_name }}
-                </label>
-            @endforeach
-        </div>
-        <input type="submit" value="MODIFICA">
+        <input type="submit" value="EDIT">
     </form>
+    
 @endsection
